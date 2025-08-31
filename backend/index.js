@@ -4,6 +4,7 @@ dotenv.config();
 import express from "express";
 import cors from "cors";
 import connectDB from "./config/db.js";
+import tourRouter from "./routers/tourRouter.js";
 
 const app = express();
 
@@ -41,14 +42,10 @@ const sampleStops = [
   },
 ];
 
+app.use("/api/tour", tourRouter);
+
 app.get("/", (req, res) => {
   res.send("Server healthy!");
-});
-
-app.post("/generate-tour", (req, res) => {
-  const { city, interests } = req.body;
-  console.log(city, interests);
-  res.json(sampleStops);
 });
 
 app.listen(port, () => {

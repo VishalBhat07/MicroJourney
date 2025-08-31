@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   MapContainer,
@@ -36,27 +37,22 @@ const Tour = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
   // Fetch tour from backend on mount
   useEffect(() => {
     setLoading(true);
     setError(null);
 
-    fetch("http://localhost:8080/generate-tour", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ city, interests }),
-    })
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to generate tour");
-        return res.json();
-      })
-      .then((data) => {
-        // Expecting data as array of stops [{name, description, coordinates, estimatedMinutesAtStop}, ...]
-        setStops(data);
+    axios
+      .post(backendUrl + "/api/tour/generate-tour", { city, interests })
+      .then((response) => {
+        // Axios puts JSON data in response.data
+        setStops(response.data.data || response.data); // support wrapped or direct response
         setLoading(false);
       })
       .catch((err) => {
-        setError(err.message);
+        setError(err.message || "Failed to generate tour");
         setLoading(false);
       });
   }, [city, interests]);
