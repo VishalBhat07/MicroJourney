@@ -1,0 +1,68 @@
+:root {
+  /* Colors */
+  --color-primary: #1e88e5; /* Bright blue for CTAs and highlights */
+  --color-primary-light: #64b5f6; /* Hover states */
+  --color-primary-dark: #1565c0; /* Active/focus states */
+
+  --color-accent: #ffb300; /* Warm accent (for highlights or markers) */
+  --color-success: #43a047; /* For success messages (e.g., saved tour) */
+  --color-warning: #f4511e; /* For warnings/errors */
+  --color-background: #f9fafb; /* Page background */
+  --color-surface: #ffffff; /* Card backgrounds */
+  --color-border: #e0e0e0; /* Subtle borders/dividers */
+  --color-text-primary: #212121; /* Main text */
+  --color-text-secondary: #616161; /* Secondary/subtle text */
+  --color-text-inverse: #ffffff; /* For buttons on dark backgrounds */
+
+  /* Typography */
+  --font-family-base: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-md: 1rem; /* 16px */
+  --font-size-lg: 1.25rem; /* 20px */
+  --font-size-xl: 1.5rem; /* 24px */
+  --font-size-xxl: 2rem; /* 32px */
+
+  /* Spacing */
+  --space-xs: 0.25rem; /* 4px */
+  --space-sm: 0.5rem; /* 8px */
+  --space-md: 1rem; /* 16px */
+  --space-lg: 1.5rem; /* 24px */
+  --space-xl: 2rem; /* 32px */
+  --space-xxl: 4rem; /* 64px */
+
+  /* Borders & Radius */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 16px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.15);
+
+  /* Transitions */
+  --transition-fast: 150ms ease-in-out;
+  --transition-medium: 300ms ease-in-out;
+  --transition-slow: 500ms ease-in-out;
+
+  /* Layout */
+  --max-content-width: 1200px; /* Keeps layout nice on big screens */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: var(--font-size-base);
+}
+
+body {
+  font-family: var(--font-family-base);
+  background-color: var(--color-background);
+  color: var(--color-text);
+  line-height: 1.5;
+}

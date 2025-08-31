@@ -1,10 +1,15 @@
 import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home/Home";
+import Tour from "./pages/Tour/Tour";
 
 function App() {
-
   return (
     <>
-      <h1>MicroJourney</h1>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/tour" element={<Tour />} />
+      </Routes>
     </>
   );
 }
