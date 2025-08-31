@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import styles from "./Home.module.css";
 import { useNavigate } from "react-router-dom";
+import HeroSection from "../../components/HeroSection/HeroSection";
+import SearchForm from "../../components/SearchForm/SearchForm";
+import PopularCities from "../../components/PopularCities/PopularCities";
+import InterestTags from "../../components/InterestTags/InterestTags";
+import FeaturesSection from "../../components/FeaturesSection/FeaturesSection";
+import HowItWorksSection from "../../components/HowItWorks/HowItWorksSection";
+import TestimonialsSection from "../../components/TestimonialsSection/TestimonialsSection";
 
 const Home = () => {
   const [city, setCity] = useState("");
@@ -8,50 +15,43 @@ const Home = () => {
   const navigate = useNavigate();
 
   const handleGenerateTour = () => {
-    if (!city.trim()) return alert("Please enter a city");
-    // You can pass data via query params or state
+    if (!city.trim()) {
+      alert("Please enter a city");
+      return;
+    }
+    if (!interests.trim()) {
+      alert("Please enter at least one interest");
+      return;
+    }
     navigate(
-      `/tour?city=${encodeURIComponent(city)}&interests=${encodeURIComponent(
-        interests
-      )}`
+      `/tour?city=${encodeURIComponent(
+        city.trim()
+      )}&interests=${encodeURIComponent(interests.trim())}`
     );
   };
 
   return (
     <div className={styles.container}>
-      <header className={styles.header}>
-        <h1 className={styles.logo}>MicroJourney</h1>
-        <p className={styles.tagline}>
-          AI-Generated Walking Tours, Tailored For You
-        </p>
-      </header>
+      <HeroSection />
 
-      <main className={styles.formContainer}>
-        <label className={styles.label}>
-          Choose a City
-          <input
-            type="text"
-            className={styles.input}
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            placeholder="e.g., Paris"
-          />
-        </label>
+      <main className={styles.mainContent}>
+        <SearchForm
+          city={city}
+          interests={interests}
+          setCity={setCity}
+          setInterests={setInterests}
+          onGenerate={handleGenerateTour}
+        />
 
-        <label className={styles.label}>
-          Your Interests
-          <input
-            type="text"
-            className={styles.input}
-            value={interests}
-            onChange={(e) => setInterests(e.target.value)}
-            placeholder="e.g., quirky art, coffee"
-          />
-        </label>
+        <PopularCities onSelectCity={setCity} />
 
-        <button className={styles.generateButton} onClick={handleGenerateTour}>
-          Generate My Tour
-        </button>
+        <InterestTags interests={interests} setInterests={setInterests} />
+
+        <FeaturesSection />
+
+        <HowItWorksSection />
+
+        <TestimonialsSection />
       </main>
     </div>
   );

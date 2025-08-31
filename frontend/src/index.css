@@ -1,17 +1,17 @@
 :root {
   /* Colors */
-  --color-primary: #1e88e5; /* Bright blue for CTAs and highlights */
-  --color-primary-light: #64b5f6; /* Hover states */
-  --color-primary-dark: #1565c0; /* Active/focus states */
+  --color-primary: #ff6f61; /* Warm coral for CTAs and highlights */
+  --color-primary-light: #ff8a73; /* Hover states */
+  --color-primary-dark: #cc5a4e; /* Active/focus states */
 
-  --color-accent: #ffb300; /* Warm accent (for highlights or markers) */
-  --color-success: #43a047; /* For success messages (e.g., saved tour) */
-  --color-warning: #f4511e; /* For warnings/errors */
-  --color-background: #f9fafb; /* Page background */
-  --color-surface: #ffffff; /* Card backgrounds */
-  --color-border: #e0e0e0; /* Subtle borders/dividers */
-  --color-text-primary: #212121; /* Main text */
-  --color-text-secondary: #616161; /* Secondary/subtle text */
+  --color-accent: #f9a825; /* Golden yellow accent */
+  --color-success: #388e3c; /* Forest green for success */
+  --color-warning: #d84315; /* Deep orange for warnings/errors */
+  --color-background: #fff8f0; /* Warm soft cream background */
+  --color-surface: #fff4e6; /* Light beige card background */
+  --color-border: #f0cfa7; /* Subtle warm border */
+  --color-text-primary: #4e342e; /* Dark brown for main text */
+  --color-text-secondary: #7b5e57; /* Medium warm brown for secondary text */
   --color-text-inverse: #ffffff; /* For buttons on dark backgrounds */
 
   /* Typography */
@@ -37,9 +37,9 @@
   --border-radius-lg: 16px;
 
   /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.15);
+  --shadow-sm: 0 1px 3px rgba(150, 105, 85, 0.05);
+  --shadow-md: 0 5px 10px rgba(150, 105, 85, 0.1);
+  --shadow-lg: 0 12px 24px rgba(150, 105, 85, 0.18);
 
   /* Transitions */
   --transition-fast: 150ms ease-in-out;
@@ -47,7 +47,7 @@
   --transition-slow: 500ms ease-in-out;
 
   /* Layout */
-  --max-content-width: 1200px; /* Keeps layout nice on big screens */
+  --max-content-width: 1200px;
 }
 
 * {
@@ -57,12 +57,14 @@
 }
 
 html {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-md);
 }
 
 body {
   font-family: var(--font-family-base);
   background-color: var(--color-background);
-  color: var(--color-text);
-  line-height: 1.5;
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

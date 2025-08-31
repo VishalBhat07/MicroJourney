@@ -1,0 +1,93 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--color-surface);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  box-shadow: var(--shadow-sm);
+  transition: background 0.3s ease;
+}
+
+.navbar:hover {
+  background: var(--color-background);
+}
+
+.brand {
+  font-weight: 700;
+}
+
+.logo {
+  font-size: var(--font-size-xl);
+  color: var(--color-primary);
+  text-decoration: none;
+  user-select: none;
+  transition: color 0.3s ease;
+}
+
+.logo:hover {
+  color: var(--color-primary-dark);
+  text-shadow: 0 0 8px var(--color-primary-light);
+}
+
+.navLinks {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navLinks li a {
+  color: var(--color-text-primary);
+  font-weight: 600;
+  font-size: var(--font-size-md);
+  text-decoration: none;
+  position: relative;
+  padding: 0.25rem 0;
+  transition: color 0.3s ease;
+}
+
+.navLinks li a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background: var(--color-primary);
+  transition: width 0.3s ease;
+}
+
+.navLinks li a:hover,
+.navLinks li a:focus {
+  color: var(--color-primary);
+  outline: none;
+}
+
+.navLinks li a:hover::after,
+.navLinks li a:focus::after,
+.navLinks li a.active::after {
+  width: 100%;
+}
+
+.active {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+/* Responsive: Collapse nav into hamburger on narrow screens if desired */
+/* For simplicity, this example keeps nav visible on all widths */
+@media (max-width: 600px) {
+  .navbar {
+    padding: 0.75rem 1rem;
+  }
+  .navLinks {
+    gap: 1rem;
+  }
+  .logo {
+    font-size: var(--font-size-lg);
+  }
+}

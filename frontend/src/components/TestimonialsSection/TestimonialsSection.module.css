@@ -1,0 +1,444 @@
+/* TestimonialsSection.module.css */
+
+/* Section Layout */
+.section {
+  position: relative;
+  padding: calc(var(--space-xxl) * 1.5) 0;
+  /* background: linear-gradient(
+    180deg,
+    var(--color-background) 0%,
+    var(--color-surface) 100%
+  ); */
+  overflow: hidden;
+  min-height: 80vh;
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* background: radial-gradient(
+      circle at 15% 25%,
+      rgba(255, 111, 97, 0.08) 0%,
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 85% 75%,
+      rgba(249, 168, 37, 0.06) 0%,
+      transparent 40%
+    ); */
+  pointer-events: none;
+}
+
+.container {
+  position: relative;
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+/* Header Styles */
+.header {
+  text-align: center;
+  margin-bottom: calc(var(--space-xxl) + var(--space-lg));
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-lg);
+  background: linear-gradient(
+    135deg,
+    var(--color-surface),
+    var(--color-border)
+  );
+  border: 1px solid var(--color-border);
+  border-radius: calc(var(--border-radius-lg) * 2);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  margin-bottom: var(--space-xl);
+}
+
+.title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-lg);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Marquee Container */
+.marqueeContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  margin-bottom: calc(var(--space-xxl) + var(--space-lg));
+}
+
+.marqueeRow {
+  display: flex;
+  gap: var(--space-lg);
+  animation: scrollLeft linear infinite;
+  will-change: transform;
+  height: 250px;
+  align-items: center;
+  padding: 0 var(--space-sm);
+}
+
+.reverse {
+  animation-direction: reverse;
+}
+
+/* Testimonial Cards */
+.testimonialCard {
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-lg);
+  width: 320px;
+  flex: 0 0 auto;
+  transition: all var(--transition-medium);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.testimonialCard:hover,
+.cardHovered {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary-light);
+}
+
+.cardGlow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-accent)
+  );
+  opacity: 0;
+  transition: opacity var(--transition-medium);
+  border-radius: var(--border-radius-lg);
+}
+
+.testimonialCard:hover .cardGlow,
+.cardHovered .cardGlow {
+  opacity: 0.03;
+}
+
+/* Card Header */
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-primary-light)
+  );
+  color: var(--color-text-inverse);
+  font-weight: 700;
+  font-size: var(--font-size-lg);
+  border-radius: 50%;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-medium);
+}
+
+.testimonialCard:hover .avatar,
+.cardHovered .avatar {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-lg);
+}
+
+.userInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.userName {
+  font-size: var(--font-size-md);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.userLocation {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.rating {
+  display: flex;
+  gap: var(--space-xs);
+}
+
+.starIcon {
+  color: var(--color-accent);
+  fill: var(--color-accent);
+}
+
+/* Quote Content */
+.quoteContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.quoteIcon {
+  color: var(--color-primary-light);
+  align-self: flex-start;
+  opacity: 0.7;
+}
+
+.quote {
+  font-style: italic;
+  font-size: var(--font-size-md);
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  margin: 0;
+  position: relative;
+}
+
+/* Gradient Fade Overlays */
+.fadeLeft,
+.fadeRight {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.fadeLeft {
+  left: 0;
+  background: linear-gradient(to right, var(--color-background), transparent);
+}
+
+.fadeRight {
+  right: 0;
+  background: linear-gradient(to left, var(--color-background), transparent);
+}
+
+/* Stats Section */
+.statsSection {
+  display: flex;
+  justify-content: center;
+  gap: calc(var(--space-xxl) + var(--space-lg));
+  margin-top: var(--space-xxl);
+  padding: var(--space-xl) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.stat {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.statNumber {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Animations */
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50%));
+  }
+}
+
+@keyframes sparkle {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+    opacity: 1;
+  }
+}
+
+.badge svg {
+  animation: sparkle 3s ease-in-out infinite;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .section {
+    padding: var(--space-xxl) 0;
+  }
+
+  .container {
+    padding: 0 var(--space-md);
+  }
+
+  .marqueeContainer {
+    gap: var(--space-md);
+  }
+
+  .marqueeRow {
+    gap: var(--space-md);
+    height: 160px;
+  }
+
+  .testimonialCard {
+    width: 280px;
+    padding: var(--space-md);
+  }
+
+  .cardHeader {
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    font-size: var(--font-size-md);
+  }
+
+  .statsSection {
+    flex-direction: column;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+
+  .stat {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  .fadeLeft,
+  .fadeRight {
+    width: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonialCard {
+    width: 260px;
+  }
+
+  .title {
+    font-size: var(--font-size-xxl);
+  }
+
+  .statsSection {
+    gap: var(--space-lg);
+  }
+}
+
+/* Focus States for Accessibility */
+.testimonialCard:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: var(--shadow-lg);
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .testimonialCard {
+    border-width: 3px;
+    background: var(--color-background);
+  }
+
+  .avatar {
+    border: 2px solid var(--color-text-inverse);
+  }
+
+  .badge {
+    border-width: 2px;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .marqueeRow {
+    animation: none;
+  }
+
+  .testimonialCard:hover {
+    transform: translateY(-2px);
+  }
+
+  .badge svg {
+    animation: none;
+  }
+
+  .testimonialCard:hover .avatar {
+    transform: scale(1.05);
+  }
+}
+
+/* Print Styles */
+@media print {
+  .section {
+    background: none;
+    page-break-inside: avoid;
+  }
+
+  .marqueeContainer {
+    overflow: visible;
+  }
+
+  .marqueeRow {
+    position: static;
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .fadeLeft,
+  .fadeRight {
+    display: none;
+  }
+}
