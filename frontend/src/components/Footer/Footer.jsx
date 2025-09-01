@@ -1,5 +1,5 @@
 import React from "react";
-import { Twitter, Linkedin, Instagram, Github } from "lucide-react";
+import { Twitter, Linkedin, Instagram, Github, Mail } from "lucide-react";
 import styles from "./Footer.module.css";
 
 const Footer = () => {
@@ -12,7 +12,7 @@ const Footer = () => {
         </p>
         <div className={styles.socials}>
           <a
-            href="https://github.com/your-repo"
+            href={import.meta.env.VITE_GITHUB_REPO}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
@@ -21,16 +21,16 @@ const Footer = () => {
             <Github size={24} />
           </a>
           <a
-            href="https://twitter.com/your-profile"
+            href="mailto:vishalbhat21092005@gmail.com"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Twitter"
+            aria-label="Mail"
             className={styles.socialLink}
           >
-            <Twitter size={24} />
+            <Mail size={24} />
           </a>
           <a
-            href="https://linkedin.com/in/your-profile"
+            href="https://linkedin.com/in/vishalbhat07"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
@@ -39,7 +39,7 @@ const Footer = () => {
             <Linkedin size={24} />
           </a>
           <a
-            href="https://instagram.com/your-profile"
+            href="https://instagram.com/vishalbhat07"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"

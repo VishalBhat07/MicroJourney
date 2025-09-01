@@ -30,7 +30,7 @@ const Navbar = () => {
         </li>
         <li>
           <a
-            href="https://github.com/your-repo"
+            href={import.meta.env.VITE_GITHUB_REPO}
             target="_blank"
             rel="noopener noreferrer"
           >

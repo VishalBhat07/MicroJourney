@@ -9,13 +9,30 @@
   min-height: 100vh;
 }
 
+.headerContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+}
+
 .heading {
   font-size: var(--font-size-xxl);
   font-weight: 900;
-  margin-bottom: var(--space-lg);
   text-align: center;
   color: var(--color-primary);
   user-select: none;
+}
+
+.newRequest {
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  border-radius: var(--border-radius-lg);
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-inverse);
+  background-color: var(--color-primary);
 }
 
 .info {
@@ -161,6 +178,98 @@
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin: var(--space-xl) auto;
+}
+
+/* Form container */
+.tourForm {
+  max-width: 900px;
+  margin: 0 auto var(--space-xxl);
+  padding: var(--space-md);
+  background: var(--color-surface);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  user-select: none;
+}
+
+/* Form rows layout */
+.formRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+/* Individual inputs container */
+.formRow > label {
+  flex: 1 1 200px;
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  font-size: var(--font-size-md);
+  color: var(--color-text-primary);
+}
+
+/* Input and select styles */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
+  margin-top: var(--space-xs);
+  padding: var(--space-sm);
+  font-size: var(--font-size-md);
+  border: 1px solid var(--color-primary-light);
+  border-radius: var(--border-radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  transition: border-color var(--transition-fast);
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+select:focus {
+  border-color: var(--color-primary);
+  outline: none;
+  box-shadow: 0 0 5px var(--color-primary);
+}
+
+/* Adjust the 'New Request' button for better alignment */
+.newRequest {
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--font-size-md);
+  font-weight: 700;
+  border-radius: var(--border-radius-lg);
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-inverse);
+  background-color: var(--color-primary);
+  transition: background-color var(--transition-fast);
+  user-select: none;
+  margin-left: var(--space-lg);
+  white-space: nowrap;
+}
+
+.newRequest:hover,
+.newRequest:focus {
+  background-color: var(--color-primary-dark);
+  outline: none;
+}
+
+/* Responsive adjustment for the form layout */
+@media (max-width: 768px) {
+  .formRow {
+    flex-direction: column;
+  }
+
+  .formRow > label {
+    flex: 1 1 100%;
+  }
+
+  .newRequest {
+    margin-left: 0;
+    margin-top: var(--space-md);
+    width: 100%;
+  }
 }
 
 @keyframes spin {

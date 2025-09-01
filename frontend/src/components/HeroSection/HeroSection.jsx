@@ -8,7 +8,7 @@ const HeroSection = () => (
     <h1 className={styles.title}>
       MicroJourney
       <span className={styles.wave} role="img" aria-label="wave">
-        <Hand />
+        <Hand size={48} />
       </span>
     </h1>
     <p className={styles.subtitle}>
