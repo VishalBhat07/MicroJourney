@@ -1,5 +1,6 @@
 import express from "express";
-import generateTourStops from "../utils/geminiAPI.js";
+import generateTourStops from "../utils/generateTour.js";
+import getPlaceInfo from "../utils/getPlaceInfo.js";
 
 const tourRouter = express.Router();
 
@@ -34,5 +35,7 @@ tourRouter.post("/generate-tour", async (req, res) => {
     });
   }
 });
+
+tourRouter.post("/info", getPlaceInfo);
 
 export default tourRouter;

@@ -307,7 +307,9 @@ const Tour = () => {
                   </p>
                   <button
                     className={styles.virtualTourButton}
-                    onClick={() => navigate("/virtual")}
+                    onClick={() =>
+                      navigate(`/info/${inputs.city}/${stop.name}`)
+                    }
                   >
                     Virtual Tour
                   </button>

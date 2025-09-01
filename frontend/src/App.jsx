@@ -5,6 +5,7 @@ import Tour from "./pages/Tour/Tour";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import ExamplePage from "./pages/VirtualTour/VirtualTour";
+import InfoPage from "./pages/Info/Info";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/tour" element={<Tour />} />
+        <Route path="/info/:city/:location" element={<InfoPage />} />
         <Route path="/virtual" element={<ExamplePage />} />
       </Routes>
       <Footer />
