@@ -29,6 +29,14 @@ const Navbar = () => {
           </NavLink>
         </li>
         <li>
+          <NavLink
+            to="/virtual"
+            className={({ isActive }) => (isActive ? styles.active : "")}
+          >
+            Virtual
+          </NavLink>
+        </li>
+        <li>
           <a
             href={import.meta.env.VITE_GITHUB_REPO}
             target="_blank"

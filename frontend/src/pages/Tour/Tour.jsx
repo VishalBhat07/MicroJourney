@@ -11,6 +11,25 @@ import {
 import "leaflet/dist/leaflet.css";
 import styles from "./Tour.module.css";
 
+const UNSPLASH_API_KEY = import.meta.env.VITE_UNSPLASH_API_KEY;
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
+// Helper: fetch image URL for location name from Unsplash
+async function fetchImage(query) {
+  try {
+    const response = await axios.get("https://api.unsplash.com/search/photos", {
+      params: { query, per_page: 1, orientation: "landscape" },
+      headers: { Authorization: `Client-ID ${UNSPLASH_API_KEY}` },
+    });
+    if (response.data.results.length > 0) {
+      return response.data.results[0].urls.small;
+    }
+  } catch {
+    // Fail silently and return null
+  }
+  return null;
+}
+
 // Helper for center computation
 function computeCenter(coords) {
   if (!coords.length) return [48.8566, 2.3522]; // fallback Paris
@@ -48,21 +67,33 @@ const Tour = () => {
   const [error, setError] = useState(null);
   const [formVisible, setFormVisible] = useState(false);
 
-  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const [images, setImages] = useState({});
 
-  const fetchTour = (params) => {
+  const fetchTour = async (params) => {
     setLoading(true);
     setError(null);
-    axios
-      .post(backendUrl + "/api/tour/generate-tour", params)
-      .then((res) => {
-        setStops(res.data.data || res.data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message || "Failed to generate tour");
-        setLoading(false);
-      });
+    try {
+      const res = await axios.post(
+        `${backendUrl}/api/tour/generate-tour`,
+        params
+      );
+      const fetchedStops = res.data.data || res.data;
+      setStops(fetchedStops);
+
+      // Fetch Unsplash images for each stop (in parallel)
+      const imgs = {};
+      await Promise.all(
+        fetchedStops.map(async (stop) => {
+          const img = await fetchImage(stop.name || params.city);
+          if (img) imgs[stop.name] = img;
+        })
+      );
+      setImages(imgs);
+    } catch (err) {
+      setError(err.message || "Failed to generate tour");
+    } finally {
+      setLoading(false);
+    }
   };
 
   // On mount, fetch tour with query if present
@@ -254,6 +285,14 @@ const Tour = () => {
           <div className={styles.cards}>
             {stops.map((stop, idx) => (
               <div className={styles.card} key={idx}>
+                {/* Image */}
+                {images[stop.name] && (
+                  <div
+                    className={styles.cardImage}
+                    style={{ backgroundImage: `url(${images[stop.name]})` }}
+                    aria-label={`${stop.name} image`}
+                  />
+                )}
                 <div className={styles.cardHeader}>
                   <div className={styles.cardIndex}>{idx + 1}</div>
                   <h3 className={styles.cardTitle}>{stop.name}</h3>
@@ -266,6 +305,12 @@ const Tour = () => {
                     </span>
                     {stop.estimatedMinutesAtStop} min stop
                   </p>
+                  <button
+                    className={styles.virtualTourButton}
+                    onClick={() => navigate("/virtual")}
+                  >
+                    Virtual Tour
+                  </button>
                 </div>
               </div>
             ))}
