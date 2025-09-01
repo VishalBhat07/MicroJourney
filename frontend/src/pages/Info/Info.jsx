@@ -33,6 +33,8 @@ const InfoPage = () => {
         });
         setPlaceInfo(res.data);
 
+        console.log(res.data)
+
         // Fetch photos from Unsplash by searching for place name or keywords
         const unsplashRes = await axios.get(
           `https://api.unsplash.com/search/photos`,
@@ -83,7 +85,7 @@ const InfoPage = () => {
           <StreetView
             apiKey={GOOGLE_MAPS_API_KEY}
             lat={center.lat}
-            lng={center.lang}
+            lng={center.lng}
             povHeading={120}
             povPitch={10}
           />
