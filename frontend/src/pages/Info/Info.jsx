@@ -5,6 +5,7 @@ import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import styles from "./Info.module.css";
 import StreetView from "../VirtualTour/StreetView";
+import { toast } from "react-toastify";
 
 const UNSPLASH_API_KEY = import.meta.env.VITE_UNSPLASH_API_KEY;
 const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
@@ -108,14 +109,17 @@ const InfoPage = () => {
       <section className={styles.section}>
         <button
           className={styles.button}
-          onClick={() => alert("Added to favorites!") /* Implement logic */}
+          onClick={
+            () => toast.success("Added to favorites!") /* Implement logic */
+          }
         >
           Add to Favorites
         </button>
         <button
           className={styles.button}
           onClick={
-            () => alert("Rating functionality coming soon!") /* Implement */
+            () =>
+              toast.info("Rating functionality coming soon!") /* Implement */
           }
           style={{ marginLeft: "1rem" }}
         >

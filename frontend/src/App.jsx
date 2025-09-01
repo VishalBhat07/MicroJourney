@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import ExamplePage from "./pages/VirtualTour/VirtualTour";
 import InfoPage from "./pages/Info/Info";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/virtual" element={<ExamplePage />} />
       </Routes>
       <Footer />
+      <ToastContainer autoClose={3000} theme="dark" />
     </>
   );
 }

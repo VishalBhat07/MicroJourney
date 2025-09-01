@@ -8,6 +8,7 @@ import InterestTags from "../../components/InterestTags/InterestTags";
 import FeaturesSection from "../../components/FeaturesSection/FeaturesSection";
 import HowItWorksSection from "../../components/HowItWorks/HowItWorksSection";
 import TestimonialsSection from "../../components/TestimonialsSection/TestimonialsSection";
+import { toast } from "react-toastify";
 
 const Home = () => {
   const [city, setCity] = useState("");
@@ -16,11 +17,11 @@ const Home = () => {
 
   const handleGenerateTour = () => {
     if (!city.trim()) {
-      alert("Please enter a city");
+      toast.info("Please enter a city");
       return;
     }
     if (!interests.trim()) {
-      alert("Please enter at least one interest");
+      toast.info("Please enter at least one interest");
       return;
     }
     navigate(
